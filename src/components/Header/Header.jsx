@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import path from "../../constants/path";
+import { AppContext } from "../../contexts/app.context";
+import { setLocaleToLS, setModeToLS } from "../../utils/utils";
 
 const Header = () => {
+  const { locale, mode, setLocale, setMode } = useContext(AppContext);
   const [open, setOpen] = useState(false);
-  const [dark, setDark] = useState(false);
-  const [openLanguage, setOpenLanguage] = useState(false);
 
   const pages = [
     { name: "Home", href: path.home },
@@ -13,8 +14,8 @@ const Header = () => {
     { name: "Contact", href: path.contact }
   ];
   const languages = [
-    { name: "English", id: "en" },
-    { name: "Tiếng Việt", id: "vi" }
+    { name: "English", value: "en" },
+    { name: "Tiếng Việt", value: "vi" }
   ];
 
   const toggleMenu = () => {
@@ -22,17 +23,20 @@ const Header = () => {
   };
 
   const toggleTheme = () => {
-    if (dark) {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
+    if (mode === "light") {
+      // document.documentElement.classList.remove("dark");
+      setMode("dark");
+      setModeToLS("dark");
+    } else if (mode === "dark") {
+      // document.documentElement.classList.add("dark");
+      setMode("light");
+      setModeToLS("light");
     }
-
-    setDark((prev) => !prev);
   };
 
-  const toggleLanguage = () => {
-    setOpenLanguage((prev) => !prev);
+  const handleChangeLocale = (event) => {
+    setLocale(event.target.value);
+    setLocaleToLS(event.target.value);
   };
 
   return (
@@ -53,7 +57,7 @@ const Header = () => {
               viewBox="0 0 20 20"
               fill="currentColor"
               aria-hidden="true"
-              className={`w-5 h-5 ${dark ? "hidden" : ""}`}
+              className={`w-5 h-5 ${mode === "light" ? "hidden" : ""}`}
               id="theme-toggle-light-icon"
             >
               <path
@@ -68,7 +72,7 @@ const Header = () => {
               viewBox="0 0 20 20"
               fill="currentColor"
               aria-hidden="true"
-              className={`w-5 h-5 ${!dark ? "hidden" : ""}`}
+              className={`w-5 h-5 ${mode === "dark" ? "hidden" : ""}`}
               id="theme-toggle-dark-icon"
             >
               <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
@@ -78,9 +82,11 @@ const Header = () => {
           <select
             id="small"
             className="block w-full p-2.5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={locale}
+            onChange={handleChangeLocale}
           >
             {languages.map((language) => (
-              <option key={language.id} value={language.id}>
+              <option key={language.value} value={language.value}>
                 {language.name}
               </option>
             ))}

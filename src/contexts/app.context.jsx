@@ -12,8 +12,8 @@ const initialAppContext = {
 export const AppContext = createContext(initialAppContext);
 
 export const AppProvider = ({ children }) => {
-  const [mode, setMode] = useState("light");
-  const [locale, setLocale] = useState("vi");
+  const [mode, setMode] = useState(initialAppContext.mode);
+  const [locale, setLocale] = useState(initialAppContext.locale);
 
   return (
     <AppContext.Provider
