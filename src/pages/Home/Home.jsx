@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 const Home = () => {
   const [data, setData] = useState("");
-  const [inputValue, setInputValue] = useState("");
   const [input, setInput] = useState("");
 
   useEffect(() => {

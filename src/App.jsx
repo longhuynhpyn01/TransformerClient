@@ -15,7 +15,7 @@ function App() {
     }
   }, [mode]);
 
-  return <div className="bg-white dark:bg-gray-900">{routeElements}</div>;
+  return <div className="">{routeElements}</div>;
 }
 
 export default App;
