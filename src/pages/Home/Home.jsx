@@ -1,7 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import logo from "../../assets/images/logo.svg";
 
 const Home = () => {
+  const { t } = useTranslation("home");
+
   const [data, setData] = useState("");
   const [input, setInput] = useState("");
 
@@ -42,27 +46,26 @@ const Home = () => {
   return (
     <div className="max-w-[800px] mx-auto my-16 min-h-[500px]">
       <div className="p-8">
-        <a href="https://flowbite.com/" className="flex items-center">
-          <img src="https://flowbite.com/docs/images/logo.svg" className="mr-6 h-26" alt="Flowbite Logo" />
+        <div className="flex items-center justify-center">
+          <img src={logo} className="h-20 mr-6" alt="TranslateHub Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white md:text-5xl">
-            Flowbite
+            TranslateHub
           </span>
-        </a>
+        </div>
       </div>
       <div className="flex flex-col gap-8">
         <div>
           <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-              <label htmlFor="comment" className="sr-only">
-                Your search
+              <label htmlFor="text" className="sr-only">
+                Your text
               </label>
               <textarea
                 id="search"
-                rows={4}
-                className="w-full px-0 text-sm text-gray-900 border-0 bg-gray-50 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 outline-0"
-                placeholder="Enter the text to be translated..."
+                rows={6}
+                className="w-full px-0 text-sm text-gray-900 border-0 resize-none bg-gray-50 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 outline-0"
+                placeholder={t("placeholderText")}
                 required
-                defaultValue={""}
                 value={input}
                 onChange={handleChange}
               />
@@ -70,7 +73,7 @@ const Home = () => {
           </div>
           <div className="flex items-center justify-end px-3 py-2">
             <button
-              type="submit"
+              type="button"
               className="inline-flex items-center py-2.5 px-4 text-base font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
               onClick={handleTranslate}
             >
@@ -96,9 +99,9 @@ const Home = () => {
         <div className="border-t dark:border-gray-600" />
 
         <div className="mb-12">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Translation</h5>
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{t("translation")}</h5>
           <blockquote className="p-4 my-4 border-l-4 border-gray-300 rounded-lg shadow-xl dark:shadow-none bg-gray-50 dark:border-gray-500 dark:bg-gray-800">
-            <p className="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               {data
                 ? data
                 : "Flowbite is just awesome. It contains tons of predesigned components and pages starting from loginscreen to complex dashboard. Perfect choice for your next SaaS application."}

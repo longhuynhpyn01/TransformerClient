@@ -4,6 +4,7 @@ import path from "../../constants/path";
 import { AppContext } from "../../contexts/app.context";
 import { setLocaleToLS, setModeToLS } from "../../utils/utils";
 import { useTranslation } from "react-i18next";
+import logo from "../../assets/images/logo.svg";
 
 const Header = () => {
   const { i18n } = useTranslation();
@@ -46,8 +47,8 @@ const Header = () => {
     <nav className="sticky top-0 z-40 flex-none w-full mx-auto bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-600">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
         <a href="https://flowbite.com/" className="flex items-center">
-          <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+          <img src={logo} className="h-8 mr-3" alt="TranslateHub Logo" />
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TranslateHub</span>
         </a>
         <div className="flex items-center space-x-4 md:order-2">
           <button
