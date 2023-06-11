@@ -4,11 +4,12 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import path from "./constants/path";
 
 export default function useRouteElements() {
   const routeElements = useRoutes([
     {
-      path: "/about",
+      path: path.about,
       element: (
         <MainLayout>
           <About />
@@ -16,7 +17,7 @@ export default function useRouteElements() {
       )
     },
     {
-      path: "/contact",
+      path: path.contact,
       element: (
         <MainLayout>
           <Contact />
@@ -24,7 +25,7 @@ export default function useRouteElements() {
       )
     },
     {
-      path: "/",
+      path: path.home,
       index: true,
       element: (
         <MainLayout>
