@@ -3,15 +3,19 @@ import { Link } from "react-router-dom";
 import path from "../../constants/path";
 import { AppContext } from "../../contexts/app.context";
 import { setLocaleToLS, setModeToLS } from "../../utils/utils";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { i18n } = useTranslation();
+  const { t } = useTranslation("common");
+
   const { locale, mode, setLocale, setMode } = useContext(AppContext);
   const [open, setOpen] = useState(false);
 
   const pages = [
-    { name: "Home", href: path.home },
-    { name: "About", href: path.about },
-    { name: "Contact", href: path.contact }
+    { name: t("home"), href: path.home },
+    { name: t("about"), href: path.about },
+    { name: t("contact"), href: path.contact }
   ];
   const languages = [
     { name: "English", value: "en" },
@@ -24,11 +28,9 @@ const Header = () => {
 
   const toggleTheme = () => {
     if (mode === "light") {
-      // document.documentElement.classList.remove("dark");
       setMode("dark");
       setModeToLS("dark");
     } else if (mode === "dark") {
-      // document.documentElement.classList.add("dark");
       setMode("light");
       setModeToLS("light");
     }
@@ -37,6 +39,7 @@ const Header = () => {
   const handleChangeLocale = (event) => {
     setLocale(event.target.value);
     setLocaleToLS(event.target.value);
+    i18n.changeLanguage(event.target.value);
   };
 
   return (
