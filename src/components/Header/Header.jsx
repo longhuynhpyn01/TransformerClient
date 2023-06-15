@@ -18,7 +18,7 @@ const Header = () => {
   const pages = [
     { name: t("home"), href: path.home },
     { name: t("about"), href: path.about },
-    { name: t("contact"), href: path.contact }
+    { name: t("product"), href: path.product }
   ];
   const languages = [
     { name: "English", value: "en" },

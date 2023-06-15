@@ -2,7 +2,7 @@ import { useRoutes } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
-import Contact from "./pages/Contact";
+import Product from "./pages/Product";
 import About from "./pages/About";
 import path from "./constants/path";
 
@@ -17,10 +17,10 @@ export default function useRouteElements() {
       )
     },
     {
-      path: path.contact,
+      path: path.product,
       element: (
         <MainLayout>
-          <Contact />
+          <Product />
         </MainLayout>
       )
     },
