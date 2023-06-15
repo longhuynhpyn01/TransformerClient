@@ -9,9 +9,9 @@ const Home = () => {
   const [data, setData] = useState("");
   const [input, setInput] = useState("");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   // const fetchData = async () => {
   //   try {
