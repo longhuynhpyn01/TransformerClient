@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo.png";
 
 const Home = () => {
   const { t } = useTranslation("home");
@@ -63,7 +63,7 @@ const Home = () => {
               <textarea
                 id="search"
                 rows={6}
-                className="w-full px-0 text-sm text-gray-900 border-0 resize-none bg-gray-50 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 outline-0"
+                className="w-full px-0 text-base text-gray-900 border-0 resize-none bg-gray-50 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 outline-0"
                 placeholder={t("placeholderText")}
                 required
                 value={input}
@@ -100,11 +100,11 @@ const Home = () => {
 
         <div className="mb-12">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{t("translation")}</h5>
-          <blockquote className="p-4 my-4 border-l-4 border-gray-300 rounded-lg shadow-xl dark:shadow-none bg-gray-50 dark:border-gray-500 dark:bg-gray-800">
+          <blockquote className="p-4 my-4 min-h-[144px] border-l-4 border-gray-300 rounded-lg shadow-xl dark:shadow-none bg-gray-50 dark:border-gray-500 dark:bg-gray-800">
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               {data
                 ? data
-                : "Flowbite is just awesome. It contains tons of predesigned components and pages starting from loginscreen to complex dashboard. Perfect choice for your next SaaS application."}
+                : ""}
             </p>
           </blockquote>
         </div>

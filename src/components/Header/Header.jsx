@@ -4,7 +4,7 @@ import path from "../../constants/path";
 import { AppContext } from "../../contexts/app.context";
 import { setLocaleToLS, setModeToLS } from "../../utils/utils";
 import { useTranslation } from "react-i18next";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo.png";
 
 const Header = () => {
   const { i18n } = useTranslation();

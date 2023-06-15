@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import path from "../../constants/path";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo.png";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation("common");
+
   return (
     <footer class="p-4 bg-gray-50 md:p-8 lg:p-10 dark:bg-gray-800 shadow-md border-t border-gray-200 dark:border-gray-600">
       <div class="mx-auto max-w-screen-xl text-center">
@@ -15,51 +18,10 @@ const Footer = () => {
           TranslateHub
         </Link>
         <p class="my-6 text-gray-500 dark:text-gray-400">
-          Open-source library of over 400+ web components and interactive elements built for better web.
+          {t("footerDesc")}
         </p>
-        <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6 ">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              Premium
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6 ">
-              Campaigns
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              Blog
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              Affiliate Program
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              FAQs
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              Contact
-            </a>
-          </li>
-        </ul>
         <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2023{" "}
-          <a href="#" class="hover:underline">
-            Flowbite™
-          </a>
-          . All Rights Reserved.
+          © 2023 TranslateHub™. All Rights Reserved.
         </span>
       </div>
     </footer>
