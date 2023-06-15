@@ -5,6 +5,7 @@ import { AppContext } from "../../contexts/app.context";
 import { setLocaleToLS, setModeToLS } from "../../utils/utils";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/logo.png";
+import { locales } from "../../i18n/i18n";
 
 const Header = () => {
   const { i18n } = useTranslation();
@@ -12,6 +13,7 @@ const Header = () => {
 
   const { locale, mode, setLocale, setMode } = useContext(AppContext);
   const [open, setOpen] = useState(false);
+  const [openLanguage, setOpenLanguage] = useState(false);
 
   const pages = [
     { name: t("home"), href: path.home },
@@ -27,6 +29,10 @@ const Header = () => {
     setOpen((prev) => !prev);
   };
 
+  const toggleMenuLanguage = () => {
+    setOpenLanguage((prev) => !prev);
+  };
+
   const toggleTheme = () => {
     if (mode === "light") {
       setMode("dark");
@@ -37,10 +43,11 @@ const Header = () => {
     }
   };
 
-  const handleChangeLocale = (event) => {
-    setLocale(event.target.value);
-    setLocaleToLS(event.target.value);
-    i18n.changeLanguage(event.target.value);
+  const handleChangeLocale = (value) => {
+    setOpenLanguage(false);
+    setLocale(value);
+    setLocaleToLS(value);
+    i18n.changeLanguage(value);
   };
 
   return (
@@ -83,18 +90,45 @@ const Header = () => {
             </svg>
           </button>
 
-          <select
-            id="small"
-            className="block w-full p-2.5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            value={locale}
-            onChange={handleChangeLocale}
-          >
-            {languages.map((language) => (
-              <option key={language.value} value={language.value}>
-                {language.name}
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <button
+              id="dropdownDefaultButton"
+              data-dropdown-toggle="dropdown"
+              className="text-white w-[130px] justify-between bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+              onClick={toggleMenuLanguage}
+            >
+              {locales[locale]}
+              <svg
+                className="w-4 h-4 ml-2"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div
+              id="dropdown"
+              className={`absolute mt-3 z-10 right-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${!openLanguage ? "hidden" : ""
+                }`}
+            >
+              <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                {languages.map((language) => (
+                  <li key={language.value} className="cursor-pointer" onClick={() => handleChangeLocale(language.value)}>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <span
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      {language.name}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
           <button
             data-collapse-toggle="mobile-menu-language-select"
