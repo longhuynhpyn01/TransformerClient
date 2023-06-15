@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/logo.png";
 
@@ -7,40 +7,56 @@ const Product = () => {
   const { t } = useTranslation("product");
 
   const [data, setData] = useState("");
-  const [input, setInput] = useState("");
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get("http://127.0.0.1:8000/api/data");
-  //     // const response = await axios.get('localhost:8000/api/data');
-  //     setData(response.data.message);
-  //   } catch (error) {
-  //     console.log("error:", error);
-  //   }
-  // };
+  const [inputs, setInputs] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setInput(e.target.value);
+    setInputs(e.target.value);
   };
 
   const handleTranslate = async () => {
-    console.log("input", input);
+    console.log("input", inputs);
 
-    const response = await axios.post(
-      "http://127.0.0.1:8000/api/data",
-      { input: input },
-      {
-        headers: {
-          "Content-Type": "application/json"
+    try {
+      setLoading(true);
+      // const response = await axios.post(
+      //   "http://127.0.0.1:8000/api/data",
+      //   { input: inputs },
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json"
+      //     }
+      //   }
+      // );
+
+      // setData(response.data?.message);
+      // setLoading(false);
+
+      const { data } = await axios.post(
+        "https://api-inference.huggingface.co/models/ntclai/en_vi_translation_1",
+        { inputs: inputs },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer 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"
+          }
         }
+      );
+      console.log("response postData:", data);
+      if (data.length > 0 && data[0].translation_text) {
+        setData(data[0].translation_text);
+        setError("");
+      } else {
+        setError("Something went wrong!");
       }
-    );
-    console.log("response postData:", response);
-    setData(response.data.message);
+
+      setLoading(false);
+    } catch (error) {
+      console.log("error: ", error);
+      setError("Something went wrong!");
+      setLoading(false);
+    }
   };
 
   return (
@@ -66,7 +82,7 @@ const Product = () => {
                 className="w-full px-0 text-base text-gray-900 border-0 resize-none bg-gray-50 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 outline-0"
                 placeholder={t("placeholderText")}
                 required
-                value={input}
+                value={inputs}
                 onChange={handleChange}
               />
             </div>
@@ -74,8 +90,10 @@ const Product = () => {
           <div className="flex items-center justify-end px-3 py-2">
             <button
               type="button"
-              className="inline-flex items-center py-2.5 px-4 text-base font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-              onClick={handleTranslate}
+              className={`inline-flex items-center py-2.5 px-4 text-base font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 ${
+                loading ? "cursor-not-allowed" : ""
+              }`}
+              onClick={() => (!loading ? handleTranslate() : {})}
             >
               <svg
                 aria-hidden="true"
@@ -101,12 +119,20 @@ const Product = () => {
         <div className="mb-12">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{t("translation")}</h5>
           <blockquote className="p-4 my-4 min-h-[144px] border-l-4 border-gray-300 rounded-lg shadow-xl dark:shadow-none bg-gray-50 dark:border-gray-500 dark:bg-gray-800">
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              {data
-                ? data
-                : ""}
-            </p>
+            {loading ? (
+              <div className="w-full animate-pulse">
+                <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+                <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
+                <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
+                <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+              </div>
+            ) : (
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{data ? data : ""}</p>
+            )}
           </blockquote>
+          {error && <p className="mb-3 font-normal text-red-700 dark:text-red-400">{error}</p>}
         </div>
       </div>
     </div>

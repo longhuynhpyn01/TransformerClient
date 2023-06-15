@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Product from "./pages/Product";
 import About from "./pages/About";
 import path from "./constants/path";
+import NotFound from "./pages/NotFound";
 
 export default function useRouteElements() {
   const routeElements = useRoutes([
@@ -30,6 +31,14 @@ export default function useRouteElements() {
       element: (
         <MainLayout>
           <Home />
+        </MainLayout>
+      )
+    },
+    {
+      path: path.notFound,
+      element: (
+        <MainLayout>
+          <NotFound />
         </MainLayout>
       )
     }

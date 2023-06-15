@@ -53,7 +53,7 @@ const Header = () => {
   return (
     <nav className="sticky top-0 z-40 flex-none w-full mx-auto bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-600">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
-        <a href="https://flowbite.com/" className="flex items-center">
+        <a href={path.home} className="flex items-center">
           <img src={logo} className="h-8 mr-3" alt="TranslateHub Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TranslateHub</span>
         </a>
@@ -112,16 +112,19 @@ const Header = () => {
             </button>
             <div
               id="dropdown"
-              className={`absolute mt-3 z-10 right-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${!openLanguage ? "hidden" : ""
-                }`}
+              className={`absolute mt-3 z-10 right-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${
+                !openLanguage ? "hidden" : ""
+              }`}
             >
               <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                 {languages.map((language) => (
-                  <li key={language.value} className="cursor-pointer" onClick={() => handleChangeLocale(language.value)}>
+                  <li
+                    key={language.value}
+                    className="cursor-pointer"
+                    onClick={() => handleChangeLocale(language.value)}
+                  >
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                    <span
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
+                    <span className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                       {language.name}
                     </span>
                   </li>

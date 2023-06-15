@@ -1,7 +1,8 @@
 const path = {
   home: "/",
   about: "/about",
-  product: "/product"
+  product: "/product",
+  notFound: "/*"
 };
 
 export default path;
