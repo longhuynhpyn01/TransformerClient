@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import path from "../../constants/path";
 import { AppContext } from "../../contexts/app.context";
 import { setLocaleToLS, setModeToLS } from "../../utils/utils";
@@ -123,7 +123,6 @@ const Header = () => {
                     className="cursor-pointer"
                     onClick={() => handleChangeLocale(language.value)}
                   >
-                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <span className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                       {language.name}
                     </span>
@@ -164,12 +163,16 @@ const Header = () => {
           <ul className="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 dark:border-gray-700">
             {pages.map((page) => (
               <li key={page.name}>
-                <Link
+                <NavLink
                   to={page.href}
-                  className={`text-sm font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500`}
+                  className={({ isActive }) =>
+                    `text-sm font-medium text-gray-900 hover:text-blue-700 dark:hover:text-blue-500 ${
+                      isActive ? "text-blue-500 dark:text-blue-700" : "text-gray-900 dark:text-gray-300"
+                    }`
+                  }
                 >
                   {page.name}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
