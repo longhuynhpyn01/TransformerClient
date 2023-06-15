@@ -13,15 +13,15 @@ const Home = () => {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("http://127.0.0.1:8000/api/data");
-      // const response = await axios.get('localhost:8000/api/data');
-      setData(response.data.message);
-    } catch (error) {
-      console.log("error:", error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get("http://127.0.0.1:8000/api/data");
+  //     // const response = await axios.get('localhost:8000/api/data');
+  //     setData(response.data.message);
+  //   } catch (error) {
+  //     console.log("error:", error);
+  //   }
+  // };
 
   const handleChange = (e) => {
     setInput(e.target.value);
