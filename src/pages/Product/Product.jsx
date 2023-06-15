@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/logo.png";
+import { Helmet } from "react-helmet-async";
 
 const Product = () => {
   const { t } = useTranslation("product");
@@ -46,6 +47,10 @@ const Product = () => {
 
   return (
     <div className="max-w-[800px] mx-auto my-16 min-h-[500px]">
+      <Helmet>
+        <title>{t("titlePage")}</title>
+        <meta name="description" content="Trang chủ dự án TranslateHub" />
+      </Helmet>
       <div className="p-8">
         <div className="flex items-center justify-center">
           <img src={logo} className="h-20 mr-6" alt="TranslateHub Logo" />

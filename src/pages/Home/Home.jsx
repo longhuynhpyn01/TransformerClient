@@ -2,13 +2,22 @@ import React from "react";
 import path from "../../constants/path";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet-async";
+import hero from "../../assets/images/hero.jpg";
 
 const Home = () => {
   const { t } = useTranslation("home");
 
   return (
     <div>
-      <section className="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
+      <Helmet>
+        <title>{t("titlePage")}</title>
+        <meta name="description" content="Trang chủ dự án TranslateHub" />
+      </Helmet>
+      <section
+        className={`bg-center bg-no-repeat  bg-gray-700 bg-blend-multiply`}
+        style={{ backgroundImage: `url(${hero})` }}
+      >
         <div className="max-w-screen-xl px-4 py-24 mx-auto text-center lg:py-56">
           <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
             {t("titleHero")}

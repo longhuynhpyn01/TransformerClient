@@ -5,12 +5,15 @@ import "./styles/index.scss";
 import App from "./App";
 import { AppProvider } from "./contexts/app.context";
 import { BrowserRouter } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <AppProvider>
-      <App />
-    </AppProvider>
+    <HelmetProvider>
+      <AppProvider>
+        <App />
+      </AppProvider>
+    </HelmetProvider>
   </BrowserRouter>
 );

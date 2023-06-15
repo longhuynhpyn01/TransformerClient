@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
 const About = () => {
@@ -33,6 +34,10 @@ const About = () => {
 
   return (
     <div className="flex flex-col py-20">
+      <Helmet>
+        <title>{t("titlePage")}</title>
+        <meta name="description" content="Trang chủ dự án TranslateHub" />
+      </Helmet>
       <section className="bg-white dark:bg-gray-900">
         <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6 ">
           <div className="max-w-screen-sm mx-auto mb-8 text-center lg:mb-16">
