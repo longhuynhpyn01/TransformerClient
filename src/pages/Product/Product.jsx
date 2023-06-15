@@ -16,22 +16,8 @@ const Product = () => {
   };
 
   const handleTranslate = async () => {
-    console.log("input", inputs);
-
     try {
       setLoading(true);
-      // const response = await axios.post(
-      //   "http://127.0.0.1:8000/api/data",
-      //   { input: inputs },
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json"
-      //     }
-      //   }
-      // );
-
-      // setData(response.data?.message);
-      // setLoading(false);
 
       const { data } = await axios.post(
         "https://api-inference.huggingface.co/models/ntclai/en_vi_translation_1",
@@ -43,7 +29,7 @@ const Product = () => {
           }
         }
       );
-      console.log("response postData:", data);
+
       if (data.length > 0 && data[0].translation_text) {
         setData(data[0].translation_text);
         setError("");
@@ -53,8 +39,7 @@ const Product = () => {
 
       setLoading(false);
     } catch (error) {
-      console.log("error: ", error);
-      setError("Something went wrong!");
+      setError("Server is loading. Please try again later!");
       setLoading(false);
     }
   };

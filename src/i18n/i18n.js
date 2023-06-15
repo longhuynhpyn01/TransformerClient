@@ -5,10 +5,12 @@ import HOME_EN from "../locales/en/home.json";
 import ABOUT_EN from "../locales/en/about.json";
 import PRODUCT_EN from "../locales/en/product.json";
 import COMMON_EN from "../locales/en/common.json";
+import NOTFOUND_EN from "../locales/en/notFound.json";
 import HOME_VI from "../locales/vi/home.json";
 import ABOUT_VI from "../locales/vi/about.json";
 import PRODUCT_VI from "../locales/vi/product.json";
 import COMMON_VI from "../locales/vi/common.json";
+import NOTFOUND_VI from "../locales/vi/notFound.json";
 import { getLocaleFromLS } from "../utils/utils";
 
 export const locales = {
@@ -21,12 +23,14 @@ export const resources = {
     home: HOME_EN,
     about: ABOUT_EN,
     product: PRODUCT_EN,
+    notFound: NOTFOUND_EN,
     common: COMMON_EN
   },
   vi: {
     home: HOME_VI,
     about: ABOUT_VI,
     product: PRODUCT_VI,
+    notFound: NOTFOUND_VI,
     common: COMMON_VI
   }
 };
@@ -37,7 +41,7 @@ export const defaultNS = "home";
 i18n.use(initReactI18next).init({
   resources,
   lng: getLocaleFromLS(),
-  ns: ["home", "about", "product", "common"],
+  ns: ["home", "about", "product", "common", "notFound"],
   fallbackLng: getLocaleFromLS(),
   defaultNS,
   interpolation: {

@@ -53,10 +53,10 @@ const Header = () => {
   return (
     <nav className="sticky top-0 z-40 flex-none w-full mx-auto bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-600">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
-        <a href={path.home} className="flex items-center">
+        <Link to={path.home} className="flex items-center">
           <img src={logo} className="h-8 mr-3" alt="TranslateHub Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TranslateHub</span>
-        </a>
+        </Link>
         <div className="flex items-center space-x-4 md:order-2">
           <button
             type="button"
