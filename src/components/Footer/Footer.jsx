@@ -13,9 +13,10 @@ const Footer = () => {
         <Link
           to={path.home}
           className="flex items-center justify-center text-2xl font-semibold text-gray-900 dark:text-white"
-        />
-        <img src={logo} className="h-8 mr-3" alt="TranslateHub Logo" />
-        TranslateHub
+        >
+          <img src={logo} className="h-8 mr-3" alt="TranslateHub Logo" />
+          TranslateHub
+        </Link>
         <p className="my-6 text-gray-500 dark:text-gray-400">{t("footerDesc")}</p>
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
           © 2023 TranslateHub™. All Rights Reserved.
