@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/logo.png";
 import { Helmet } from "react-helmet-async";
 
+const MAXIMUM_NUMBER_OF_CHARACTERS = 550;
+
 const Product = () => {
   const { t } = useTranslation("product");
 
@@ -11,9 +13,19 @@ const Product = () => {
   const [inputs, setInputs] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [numberOfCharacters, setNumberOfCharacters] = useState(0);
 
   const handleChange = (e) => {
-    setInputs(e.target.value);
+    const lengthOfCharacters = e.target.value.length;
+
+    if (lengthOfCharacters <= MAXIMUM_NUMBER_OF_CHARACTERS) {
+      setNumberOfCharacters(lengthOfCharacters);
+      setInputs(e.target.value);
+    } else {
+      const value = e.target.value.slice(0, MAXIMUM_NUMBER_OF_CHARACTERS);
+      setNumberOfCharacters(value.length);
+      setInputs(value);
+    }
   };
 
   const handleTranslate = async () => {
@@ -62,19 +74,19 @@ const Product = () => {
       <div className="flex flex-col gap-8">
         <div>
           <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-            <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-              <label htmlFor="text" className="sr-only">
-                Your text
-              </label>
+            <div className="relative p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
               <textarea
                 id="search"
                 rows={6}
-                className="w-full px-0 text-base text-gray-900 border-0 resize-none bg-gray-50 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 outline-0"
+                className="w-full px-0 mb-2 text-sm text-gray-900 border-0 resize-none bg-gray-50 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 outline-0"
                 placeholder={t("placeholderText")}
                 required
                 value={inputs}
                 onChange={handleChange}
               />
+              <label htmlFor="text" className="absolute text-sm text-gray-900 right-7 dark:text-gray-300 bottom-2">
+                {numberOfCharacters}/{MAXIMUM_NUMBER_OF_CHARACTERS}
+              </label>
             </div>
           </div>
           <div className="flex items-center justify-end px-3 py-2">
