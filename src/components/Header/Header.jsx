@@ -44,10 +44,13 @@ const Header = () => {
   };
 
   const handleChangeLocale = (value) => {
+    if (value !== locale) {
+      setLocale(value);
+      setLocaleToLS(value);
+      i18n.changeLanguage(value);
+    }
+
     setOpenLanguage(false);
-    setLocale(value);
-    setLocaleToLS(value);
-    i18n.changeLanguage(value);
   };
 
   return (
