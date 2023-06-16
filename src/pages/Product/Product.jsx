@@ -84,7 +84,10 @@ const Product = () => {
                 value={inputs}
                 onChange={handleChange}
               />
-              <label htmlFor="text" className="absolute text-sm text-gray-900 right-7 dark:text-gray-300 bottom-2">
+              <label
+                htmlFor="text"
+                className="absolute text-xs text-gray-900 opacity-70 right-7 dark:text-gray-300 bottom-2"
+              >
                 {numberOfCharacters}/{MAXIMUM_NUMBER_OF_CHARACTERS}
               </label>
             </div>
