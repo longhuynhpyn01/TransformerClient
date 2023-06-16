@@ -1,5 +1,7 @@
 {
   "titlePage": "Sản phẩm - TranslateHub",
   "translation": "Bản dịch",
-  "placeholderText": "Nhập văn bản ở đây..."
+  "placeholderText": "Nhập văn bản ở đây...",
+  "textError1": "Máy chủ đang khởi động. Vui lòng thử lại sau!",
+  "textError2": "Có sự cố gì đó đang xảy ra!"
 }

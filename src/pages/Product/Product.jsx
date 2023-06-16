@@ -35,12 +35,12 @@ const Product = () => {
         setData(data[0].translation_text);
         setError("");
       } else {
-        setError("Something went wrong!");
+        setError(t("textError2"));
       }
 
       setLoading(false);
     } catch (error) {
-      setError("Server is loading. Please try again later!");
+      setError(t("textError1"));
       setLoading(false);
     }
   };
