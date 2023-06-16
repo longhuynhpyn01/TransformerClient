@@ -3,6 +3,7 @@ import path from "../../constants/path";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
+import notFound from "../../assets/images/notFound.png";
 
 const NotFound = () => {
   const { t } = useTranslation("notFound");
@@ -16,11 +17,7 @@ const NotFound = () => {
       <section className="bg-white dark:bg-gray-900">
         <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
           <div className="max-w-screen-sm mx-auto text-center">
-            <img
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/404/404-computer.svg"
-              alt="404 Not Found"
-              className="mx-auto mb-4"
-            />
+            <img src={notFound} alt="404 Not Found" className="mx-auto mb-4 w-[600px] h-[600px] object-cover" />
             <h1 className="mb-4 font-extrabold tracking-tight text-7xl lg:text-9xl text-primary-600 dark:text-white">
               404
             </h1>
