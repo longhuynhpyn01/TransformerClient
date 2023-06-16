@@ -116,14 +116,14 @@ const Header = () => {
                 !openLanguage ? "hidden" : ""
               }`}
             >
-              <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+              <ul className="text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                 {languages.map((language) => (
                   <li
                     key={language.value}
-                    className="cursor-pointer"
+                    className="cursor-pointer first:rounded-tl-lg first:rounded-tr-lg last:rounded-bl-lg last:rounded-br-lg"
                     onClick={() => handleChangeLocale(language.value)}
                   >
-                    <span className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <span className="block px-4 py-2 rounded-[inherit] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                       {language.name}
                     </span>
                   </li>
